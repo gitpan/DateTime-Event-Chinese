@@ -1,0 +1,9 @@
+Build.PL
+CHANGES
+lib/DateTime/Event/Chinese.pm
+LICENSE
+MANIFEST
+META.yml
+t/01-sanity.t
+
+SIGNATURE    Added here by Module::Build
