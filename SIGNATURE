@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.37.
+signed via the Module::Signature module, version 0.38.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -15,18 +15,18 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 f195baa91b20d1e1b73cf7b6594d55f403718c94 Build.PL
-SHA1 7bafb3536aefa9ea68e1859cbf4045095cbcfbd1 CHANGES
+SHA1 7fa49bd10667a0214487d83632b165fa7a575a96 CHANGES
 SHA1 3933b8775a7af6f0ae9dd661c838554bdc41fa63 LICENSE
 SHA1 bac831341f28ce241f2c5e562bf3a915851defb0 MANIFEST
-SHA1 2de580f79f099904e2efb08732803b71d45f0596 META.yml
-SHA1 1849b2e69cd3bf568e221f73cf6e91ebae6489c0 Makefile.PL
-SHA1 c608541d6a15ad86ca1f28a5a099915708992c20 lib/DateTime/Event/Chinese.pm
-SHA1 45f3d31cf496a8bc4fa902fb5bd884a5ca937673 t/01-sanity.t
+SHA1 4405898e14f7bebbbe017b455f00ba749b0a51b5 META.yml
+SHA1 faec519f213f7e603ecd1420d147b35713757738 Makefile.PL
+SHA1 1159ccf29425fcabe82a4560fbb14b68b746a0d6 lib/DateTime/Event/Chinese.pm
+SHA1 8c44b3ec492a67ff571aee4dbcf29fdb5ededd9c t/01-sanity.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.0.6 (GNU/Linux)
 Comment: For info see http://www.gnupg.org
 
-iD8DBQFAA3w2pIZqybP6lHMRApACAJ49VSSpmiCItLd3neCaNR7Yz4ejuACg9PCu
-Z73iY+vCJlNydtbfrohG9hA=
-=4j+g
+iD8DBQFAEHpqpIZqybP6lHMRAtLWAJ9zyWJ3o6nmKmaAmLlcuvVNJyddwwCgpuD+
+/3MgzrRntUSOduKcaK0BP4A=
+=Ky3o
 -----END PGP SIGNATURE-----

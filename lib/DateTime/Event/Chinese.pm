@@ -3,7 +3,7 @@ use strict;
 use vars qw($VERSION);
 BEGIN
 {
-    $VERSION = '0.01';
+    $VERSION = '0.02';
 }
 use DateTime::Event::Lunar;
 use DateTime::Event::SolarTerm qw(WINTER_SOLSTICE);
@@ -24,7 +24,7 @@ sub new_year_for_sui
 {
     my $self = shift;
     my %args = Params::Validate::validate(@_, \%BasicValidate);
-    my($dt)  = $args{datetime};
+    my $dt   = $args{datetime}->clone->truncate(to => 'day')->set(hour => 12);
 
     my $s1 = DateTime::Event::SolarTerm->prev_term_at(
         datetime => $dt, longitude => WINTER_SOLSTICE);
@@ -69,13 +69,12 @@ sub new_year
 sub new_year_before
 {
     my $self = shift;
-    my %args = Params::Validate::validate(@_, { %BasicValidate,
-        on_or_before => { type => Params::Validate::SCALAR(), default => 0 } } );
-    my $dt   = $args{datetime};
+    my %args = Params::Validate::validate(@_, \%BasicValidate);
+    my $dt   = $args{datetime}->clone->truncate(to => 'day')->set(hour => 12);
 
     my $new_year = $self->new_year_for_sui(datetime => $dt);
     my $rv;
-    if ($args{on_or_before} ? $dt >= $new_year : $dt > $new_year) {
+    if ($dt > $new_year) {
         $rv = $new_year;
     } else {
         $rv = $self->new_year_for_sui(
@@ -93,6 +92,18 @@ sub new_year_for_gregorian_year
         year => $args{datetime}->year, month => 7, day => 1, time_zone => $args{datetime}->time_zone));
 }
 
+BEGIN
+{
+    if (eval { require Memoize } && !$@) {
+        Memoize::memoize('new_year_for_gregorian_year', NORMALIZER => sub {
+            my $self = shift;
+            my %args = Params::Validate::validate(@_, \%BasicValidate);
+
+            $args{datetime}->year;
+        });
+    }
+}
+
 # This one didn't exist in [1]. Basically, it just tries to get the
 # chinese new year in the given year, and if that is before the given
 # date, we get next year's.
@@ -100,7 +111,7 @@ sub new_year_after
 {
     my $self = shift;
     my %args = Params::Validate::validate(@_, \%BasicValidate);
-    my $dt   = $args{datetime};
+    my $dt   = $args{datetime}->clone->truncate(to => 'day')->set(hour => 12);
 
     my $new_year_this_gregorian_year = $self->new_year_for_gregorian_year(
         datetime => $dt);

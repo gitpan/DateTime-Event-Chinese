@@ -1,10 +1,13 @@
 Changes
 =======
 
+0.02 22 Jan 2004
+  - Do calculations based on Asia/Shanghai time zone
+  - Slightly beef up tests
+
 0.01 12 Jan 2004
   - Remove reference to non-existent DateTime::Event::SolarTerm::Data
   - Add Makefile.PL for backwards compatibility
-  - add on_or_before option
 
 0.01_01 27 Dec 2003
   - Initial release

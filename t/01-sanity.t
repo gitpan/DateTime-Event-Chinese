@@ -1,8 +1,11 @@
 #!perl
 use strict;
-use Test::More qw(no_plan);
+use Test::More tests => 11;
 BEGIN
 {
+    print STDERR 
+        "\n*** This test will take a long time, please be patient ***\n",
+        "*** Starting on ", scalar(localtime), "\n";
     use_ok("DateTime::Event::Chinese");
 }
 
@@ -24,4 +27,15 @@ foreach my $dt (@new_years) {
 
     ok($dt->compare($ny) == 0) or
         diag( "Expected " . $dt->datetime . ", but got " . $ny->datetime);
+}
+
+my $start = $new_years[0] + DateTime::Duration->new(days => -10);
+my $end   = $new_years[$#new_years] + DateTime::Duration->new(days => 10);
+
+my $ny   = DateTime::Event::Chinese->new_year();
+my $dt   = $ny->next($start);
+my $idx  = 0;
+while($dt < $end) {
+    ok($dt->compare($new_years[$idx++]) == 0);
+    $dt = $ny->next($dt);
 }

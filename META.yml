@@ -1,8 +1,11 @@
 --- #YAML:1.0
 name: DateTime-Event-Chinese
-version: 0.01
+version: 0.02
+author:
+  - Daisuke Maki E<lt>daisuke@cpan.orgE<gt>
+abstract: |-
+  DateTime Extension for Calculating Important Chinese Dates
 license: perl
-distribution_type: module
 requires:
   DateTime: 0
   DateTime::Event::Lunar: 0
@@ -15,5 +18,5 @@ conflicts: {}
 provides:
   DateTime::Event::Chinese:
     file: lib/DateTime/Event/Chinese.pm
-    version: 0.01
-generated_by: Module::Build version 0.21
+    version: 0.02
+generated_by: Module::Build version 0.22
