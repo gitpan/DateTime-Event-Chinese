@@ -3,7 +3,7 @@ use strict;
 use vars qw($VERSION);
 BEGIN
 {
-    $VERSION = '0.02';
+    $VERSION = '0.03';
 }
 use DateTime::Event::Lunar;
 use DateTime::Event::SolarTerm qw(WINTER_SOLSTICE);
@@ -24,6 +24,8 @@ sub new_year_for_sui
 {
     my $self = shift;
     my %args = Params::Validate::validate(@_, \%BasicValidate);
+
+    return $args{datetime} if $args{datetime}->is_infinite;
     my $dt   = $args{datetime}->clone->truncate(to => 'day')->set(hour => 12);
 
     my $s1 = DateTime::Event::SolarTerm->prev_term_at(
@@ -60,8 +62,12 @@ sub new_year
     my $class = shift;
     my $self  = $class->_new();
     return DateTime::Set->from_recurrence(
-        next     => sub { $self->new_year_after(datetime => $_[0]) },
-        previous => sub { $self->new_year_before(datetime => $_[0]) }
+        next     => sub {
+            return $_[0] if $_[0]->is_infinite;
+            $self->new_year_after(datetime => $_[0]) },
+        previous => sub {
+            return $_[0] if $_[0]->is_infinite;
+            self->new_year_before(datetime => $_[0]) }
     );
 }
 
@@ -70,6 +76,8 @@ sub new_year_before
 {
     my $self = shift;
     my %args = Params::Validate::validate(@_, \%BasicValidate);
+
+    return $args{datetime} if $args{datetime}->is_infinite;
     my $dt   = $args{datetime}->clone->truncate(to => 'day')->set(hour => 12);
 
     my $new_year = $self->new_year_for_sui(datetime => $dt);
@@ -88,6 +96,8 @@ sub new_year_for_gregorian_year
 {
     my $self = shift;
     my %args = Params::Validate::validate(@_, \%BasicValidate);
+
+    return $args{datetime} if $args{datetime}->is_infinite;
     return $self->new_year_before(datetime => DateTime->new(
         year => $args{datetime}->year, month => 7, day => 1, time_zone => $args{datetime}->time_zone));
 }
@@ -111,6 +121,8 @@ sub new_year_after
 {
     my $self = shift;
     my %args = Params::Validate::validate(@_, \%BasicValidate);
+
+    return $args{datetime} if $args{datetime}->is_infinite;
     my $dt   = $args{datetime}->clone->truncate(to => 'day')->set(hour => 12);
 
     my $new_year_this_gregorian_year = $self->new_year_for_gregorian_year(
