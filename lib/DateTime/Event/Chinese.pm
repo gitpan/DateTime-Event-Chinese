@@ -6,8 +6,7 @@ BEGIN
     $VERSION = '0.01';
 }
 use DateTime::Event::Lunar;
-use DateTime::Event::SolarTerm;
-use DateTime::Event::SolarTerm::Data qw(WINTER_SOLSTICE);
+use DateTime::Event::SolarTerm qw(WINTER_SOLSTICE);
 use DateTime::Util::Astro::Moon qw(MEAN_SYNODIC_MONTH);
 use DateTime::Util::Calc qw(moment truncate_to_midday);
 use Math::Round qw(round);
@@ -70,12 +69,13 @@ sub new_year
 sub new_year_before
 {
     my $self = shift;
-    my %args = Params::Validate::validate(@_, \%BasicValidate);
+    my %args = Params::Validate::validate(@_, { %BasicValidate,
+        on_or_before => { type => Params::Validate::SCALAR(), default => 0 } } );
     my $dt   = $args{datetime};
 
     my $new_year = $self->new_year_for_sui(datetime => $dt);
     my $rv;
-    if ($dt > $new_year) {
+    if ($args{on_or_before} ? $dt >= $new_year : $dt > $new_year) {
         $rv = $new_year;
     } else {
         $rv = $self->new_year_for_sui(
@@ -153,7 +153,7 @@ DateTime::Event::Chinese - DateTime Extension for Calculating Important Chinese 
 
 This modules implements the algorithm described in "Calendrical Calculations"
 to compute some important Chinese dates, such as date of new year and
-other holidays (Currently the only new years can be calculated).
+other holidays (Currently only new years can be calculated).
 
 =head1 FUNCTIONS
 
