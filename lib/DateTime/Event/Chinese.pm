@@ -1,9 +1,14 @@
+# $Id$
+#
+# Daisuke Maki <dmaki@cpan.org>
+# All rights reserved.
+
 package DateTime::Event::Chinese;
 use strict;
 use vars qw($VERSION);
 BEGIN
 {
-    $VERSION = '0.03';
+    $VERSION = '0.04';
 }
 use DateTime::Event::Lunar;
 use DateTime::Event::SolarTerm qw(WINTER_SOLSTICE);
@@ -218,7 +223,7 @@ This is the function that is internally used by new_year()-E<gt>previous().
 
 =head1 AUTHOR
 
-Daisuke Maki E<lt>daisuke@cpan.orgE<gt>
+(c) Copyright 2004-2005 Daisuke Maki E<lt>daisuke@cpan.orgE<gt>
 
 =head1 REFERENCES
 

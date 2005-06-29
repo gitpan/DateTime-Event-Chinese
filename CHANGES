@@ -1,16 +1,23 @@
 Changes
 =======
 
-0.03 24 Jul 2004
+Unless otherwise noted, all changes by Daisuke Maki <dmaki@cpan.org>
+
+0.04 - 29 Jun 2005
+  - No code change
+  - Change Makefile.PL target to 'traditional'
+  - minor doc tweaks
+
+0.03 - 24 Jul 2004
   - Handle infinite datetimes
 
-0.02 22 Jan 2004
+0.02 - 22 Jan 2004
   - Do calculations based on Asia/Shanghai time zone
   - Slightly beef up tests
 
-0.01 12 Jan 2004
+0.01 - 12 Jan 2004
   - Remove reference to non-existent DateTime::Event::SolarTerm::Data
   - Add Makefile.PL for backwards compatibility
 
-0.01_01 27 Dec 2003
+0.01_01 - 27 Dec 2003
   - Initial release
