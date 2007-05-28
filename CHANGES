@@ -1,7 +1,12 @@
 Changes
 =======
 
-Unless otherwise noted, all changes by Daisuke Maki <dmaki@cpan.org>
+Unless otherwise noted, all changes by Daisuke Maki
+
+0.05 - 28 May 2007
+  - Migrate to Module::Install
+  - Require new version for modules.
+  - Add POD tests.
 
 0.04 - 29 Jun 2005
   - No code change

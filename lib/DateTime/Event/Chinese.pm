@@ -1,14 +1,15 @@
-# $Id$
+# $Id: /local/datetime/modules/DateTime-Event-Chinese/trunk/lib/DateTime/Event/Chinese.pm 11672 2007-05-28T01:41:27.706579Z daisuke  $
 #
 # Daisuke Maki <dmaki@cpan.org>
 # All rights reserved.
 
 package DateTime::Event::Chinese;
 use strict;
+use warnings;
 use vars qw($VERSION);
 BEGIN
 {
-    $VERSION = '0.04';
+    $VERSION = '0.05';
 }
 use DateTime::Event::Lunar;
 use DateTime::Event::SolarTerm qw(WINTER_SOLSTICE);
@@ -185,6 +186,10 @@ other holidays (Currently only new years can be calculated).
 
 =head1 FUNCTIONS
 
+=head2 DateTime::Event::Chinese-E<gt>new_year()
+
+Returns a DateTime::Set that generates Chinese new years.
+
 =head2 DateTime::Event::Chinese-E<gt>new_year_for_sui(%args)
 
 Returns the DateTime object representing the Chinese New Year for the
@@ -223,7 +228,14 @@ This is the function that is internally used by new_year()-E<gt>previous().
 
 =head1 AUTHOR
 
-(c) Copyright 2004-2005 Daisuke Maki E<lt>daisuke@cpan.orgE<gt>
+Copyright 2004-2007 Daisuke Maki E<lt>daisuke@endeworks.jpE<gt>
+
+=head1 LICENSE
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+See http://www.perl.com/perl/misc/Artistic.html
 
 =head1 REFERENCES
 
