@@ -24,4 +24,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/lestrrat/DateTime-Event-Chinese.git
-version: 0.99999
+version: 1.00
